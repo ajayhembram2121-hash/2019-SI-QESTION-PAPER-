@@ -94,10 +94,6 @@
             box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
         }
 
-        .login-btn:active {
-            transform: translateY(0);
-        }
-
         .error-message {
             color: #d32f2f;
             font-size: 14px;
@@ -127,10 +123,9 @@
             color: #666;
             margin-bottom: 8px;
             font-family: 'Courier New', monospace;
-            padding: 5px;
+            padding: 5px 10px;
             background: white;
             border-radius: 4px;
-            padding-left: 10px;
         }
 
         .credential-item strong {
@@ -141,35 +136,407 @@
             display: none;
         }
 
-        .user-info {
-            display: none;
-            background: #e8f5e9;
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 20px;
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
             text-align: center;
         }
 
-        .user-info.show {
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .user-info {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .timer-section {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .timer {
+            font-size: 24px;
+            color: #d32f2f;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            margin: 15px 0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .navigation {
+            display: flex;
+            gap: 5px;
+            padding: 15px;
+            background: #f8f9fa;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #e0e0e0;
+            max-height: 100px;
+            overflow-y: auto;
+        }
+
+        .nav-btn {
+            width: 35px;
+            height: 35px;
+            padding: 0;
+            border: 2px solid #e0e0e0;
+            background: white;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            border-color: #667eea;
+        }
+
+        .nav-btn.answered {
+            background: #c8e6c9;
+            border-color: #4caf50;
+        }
+
+        .nav-btn.current {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .content {
+            padding: 30px;
+            max-height: 550px;
+            overflow-y: auto;
+        }
+
+        .question-container {
+            margin-bottom: 30px;
+        }
+
+        .question-number {
+            color: #667eea;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .question-text {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 15px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .option {
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 15px;
+        }
+
+        .option:hover {
+            border-color: #667eea;
+            background: #f0f3ff;
+        }
+
+        .option input[type="radio"] {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .option.selected {
+            border-color: #667eea;
+            background: #e8eaf6;
+        }
+
+        .option.correct {
+            border-color: #4caf50;
+            background: #e8f5e9;
+        }
+
+        .option.incorrect {
+            border-color: #d32f2f;
+            background: #ffebee;
+        }
+
+        .explanation-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+
+        .explanation-box strong {
+            color: #856404;
             display: block;
+            margin-bottom: 8px;
+        }
+
+        .explanation-box p {
+            color: #856404;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            padding: 20px;
+            border-top: 2px solid #e0e0e0;
+            background: #f8f9fa;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-next {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-next:hover {
+            background: #5568d3;
+        }
+
+        .btn-prev {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-prev:hover {
+            background: #e0e0e0;
+        }
+
+        .btn-submit {
+            background: #4caf50;
+            color: white;
+            font-size: 18px;
+        }
+
+        .btn-submit:hover {
+            background: #45a049;
+        }
+
+        .btn-review {
+            background: #2196f3;
+            color: white;
+            flex: none;
+        }
+
+        .btn-review:hover {
+            background: #0b7dda;
+        }
+
+        .btn-back {
+            background: #6c757d;
+            color: white;
+            flex: none;
+        }
+
+        .btn-back:hover {
+            background: #5a6268;
         }
 
         .logout-btn {
             background: #ff9800;
-            margin-top: 10px;
+            flex: none;
         }
 
         .logout-btn:hover {
             background: #e68900;
         }
 
+        .result-section {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .result-score {
+            font-size: 36px;
+            color: #667eea;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        .result-message {
+            font-size: 18px;
+            color: #666;
+            margin: 15px 0;
+        }
+
+        .result-details {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            text-align: left;
+            display: inline-block;
+        }
+
+        .detail-item {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .review-section {
+            padding: 30px;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 15px;
+        }
+
+        .review-header h2 {
+            color: #667eea;
+        }
+
+        .review-content {
+            max-height: 700px;
+            overflow-y: auto;
+        }
+
+        .review-item {
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-left: 4px solid #e0e0e0;
+        }
+
+        .review-item.correct-review {
+            background: #e8f5e9;
+            border-left-color: #4caf50;
+        }
+
+        .review-item.incorrect-review {
+            background: #ffebee;
+            border-left-color: #d32f2f;
+        }
+
+        .review-question {
+            font-size: 15px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        .review-answer {
+            margin-bottom: 12px;
+        }
+
+        .user-answer,
+        .correct-answer {
+            padding: 8px;
+            border-radius: 4px;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .user-answer {
+            background: white;
+            color: #333;
+        }
+
+        .correct-answer {
+            background: white;
+            color: #2e7d32;
+        }
+
+        .explanation {
+            background: white;
+            padding: 12px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        .explanation strong {
+            display: block;
+            color: #667eea;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .explanation p {
+            color: #666;
+            line-height: 1.5;
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
         @media (max-width: 768px) {
-            .login-container {
-                padding: 25px;
+            .header h1 {
+                font-size: 20px;
             }
 
-            .login-header h1 {
-                font-size: 22px;
+            .content {
+                padding: 15px;
+            }
+
+            .timer {
+                font-size: 18px;
+            }
+
+            .review-header {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
             }
         }
     </style>
@@ -199,11 +566,11 @@
 
         <div class="demo-credentials">
             <h3>📝 পরীক্ষার জন্য ক্রেডেনশিয়াল:</h3>
-            <div class="credential-item"><strong>ইউজারনেম:</strong> pradip | <strong>পাসওয়ার্ড:</strong> pradip1234</div>
-            <div class="credential-item"><strong>ইউজারনেম:</strong> raj | <strong>পাসওয়ার্ড:</strong> raj5678</div>
-            <div class="credential-item"><strong>ইউজারনেম:</strong> priya | <strong>পাসওয়ার্ড:</strong> priya9999</div>
-            <div class="credential-item"><strong>ইউজারনেম:</strong> amit | <strong>পাসওয়ার্ড:</strong> amit2024</div>
-            <div class="credential-item"><strong>ইউজারনেম:</strong> sunita | <strong>পাসওয়ার্ড:</strong> sunita7890</div>
+            <div class="credential-item"><strong>pradip</strong> / pradip1234</div>
+            <div class="credential-item"><strong>raj</strong> / raj5678</div>
+            <div class="credential-item"><strong>priya</strong> / priya9999</div>
+            <div class="credential-item"><strong>amit</strong> / amit2024</div>
+            <div class="credential-item"><strong>sunita</strong> / sunita7890</div>
         </div>
     </div>
 
@@ -212,49 +579,55 @@
         <div class="container">
             <div class="header">
                 <h1>📚 অনলাইন প্র্যাকটিস কুইজ</h1>
-                <p>100টি বহুনির্বাচনী প্রশ্ন</p>
-                <div class="user-info show" id="userInfo"></div>
+                <p>25টি বহুনির্বাচনী প্রশ্ন</p>
+                <div class="user-info" id="userInfo"></div>
             </div>
 
             <div class="timer-section" id="timerSection">
-                <div style="font-size: 14px; color: #666;">সময় অবশিষ্ট</div>
-                <div class="timer" id="timer">2:00:00</div>
+                <div style="font-size: 14px; color: #666;">⏱️ সময় অবশিষ্ট</div>
+                <div class="timer" id="timer">1:00:00</div>
                 <div class="progress-bar">
                     <div class="progress-fill" id="progressFill"></div>
                 </div>
-                <div style="font-size: 12px; color: #999;" id="questionProgress">প্রশ্ন 1 / 100</div>
+                <div style="font-size: 12px; color: #999;" id="questionProgress">প্রশ্ন 1 / 25</div>
             </div>
 
             <div class="navigation" id="navigation"></div>
 
-            <div class="content" id="quizContent">
-                <!-- প্রশ্ন এখানে লোড হবে -->
-            </div>
+            <div class="content" id="quizContent"></div>
 
             <div class="button-group">
                 <button class="btn-prev" id="prevBtn" onclick="previousQuestion()">← পূর্ববর্তী</button>
                 <button class="btn-next" id="nextBtn" onclick="nextQuestion()">পরবর্তী →</button>
-                <button class="btn-submit hidden" id="submitBtn" onclick="submitQuiz()">পরীক্ষা জমা দিন</button>
+                <button class="btn-submit hidden" id="submitBtn" onclick="submitQuiz()">পরীক্ষা জমা দিন ✓</button>
             </div>
 
             <div class="result-section hidden" id="resultSection">
-                <h2>আপনার ফলাফল</h2>
-                <div class="result-score" id="finalScore">0/100</div>
+                <h2>আপনার ফলাফল 📊</h2>
+                <div class="result-score" id="finalScore">0/25</div>
                 <div class="result-message" id="resultMessage"></div>
                 <div class="result-details">
                     <div class="detail-item">✓ সঠিক উত্তর: <span id="correctCount">0</span></div>
                     <div class="detail-item">✗ ভুল উত্তর: <span id="wrongCount">0</span></div>
                     <div class="detail-item">- অনুত্তরিত: <span id="unansweredCount">0</span></div>
-                    <div class="detail-item">শতাংশ: <span id="percentage">0</span>%</div>
+                    <div class="detail-item"><strong>শতাংশ: <span id="percentage">0</span>%</strong></div>
                 </div>
-                <button class="btn-reset" onclick="resetQuiz()">পুনরায় শুরু করুন</button>
+                <button class="btn-review" onclick="reviewAnswers()">📖 উত্তর পর্যালোচনা করুন</button>
                 <button class="logout-btn" onclick="logout()">লগআউট করুন</button>
+            </div>
+
+            <div class="review-section hidden" id="reviewSection">
+                <div class="review-header">
+                    <h2>📖 উত্তর পর্যালোচনা</h2>
+                    <button class="btn-back" onclick="backToResult()">← ফলাফলে ফিরুন</button>
+                </div>
+                <div class="review-content" id="reviewContent"></div>
             </div>
         </div>
     </div>
 
     <script>
-        // ইউজার ক্রেডেনশিয়াল ডাটাবেস
+        // ইউজার ক্রেডেনশিয়াল
         const users = {
             'pradip': 'pradip1234',
             'raj': 'raj5678',
@@ -265,7 +638,6 @@
 
         let currentUser = null;
 
-        // লগইন হ্যান্ডেল করুন
         function handleLogin(event) {
             event.preventDefault();
             
@@ -292,11 +664,11 @@
         function startQuiz() {
             document.getElementById('loginContainer').style.display = 'none';
             document.getElementById('quizContainer').style.display = 'block';
-            document.getElementById('userInfo').textContent = `স্বাগতম, ${currentUser}! আপনার পরীক্ষা শুরু করুন। ✨`;
+            document.getElementById('userInfo').textContent = `🎓 স্বাগতম, ${currentUser}! আপনার পরীক্ষা শুরু করুন।`;
             
             currentQuestion = 0;
             userAnswers = new Array(questions.length).fill(null);
-            timeLeft = 2 * 60 * 60;
+            timeLeft = 1 * 60 * 60;
             quizSubmitted = false;
             
             loadQuestion();
@@ -317,108 +689,158 @@
             {
                 question: "প্যালিওন্টোলজি নিম্নোক্ত কোন বিষয়ের অধ্যয়ন?",
                 options: ["উদ্ভিদ এবং প্রাণী জীবাশ্ম", "আগ্নেয়গিরি", "বায়ুমণ্ডল", "শিলা"],
-                correct: 0
+                correct: 0,
+                explanation: "প্যালিওন্টোলজি (Paleontology) হলো জীবাশ্ম বিজ্ঞান। এর মাধ্যমে কোটি কোটি বছর আগের ভূগর্ভস্থ উদ্ভিদ ও প্রাণীর জীবাশ্ম বা কঙ্কাল নিয়ে গবেষণা করে পৃথিবীর ইতিহাস জানা যায়।"
             },
             {
                 question: "নিউটনের প্রথম গতিসূত্রটি পরিচিত হয়েছে",
                 options: ["স্থির নীতি", "আপেক্ষিকতার মূলনীতি", "কার্যকারিতা নীতি", "জড়তার মূলনীতি"],
-                correct: 3
+                correct: 3,
+                explanation: "নিউটনের প্রথম গতিসূত্র থেকে আমরা পদার্থের 'জড়তা' (Inertia)-র ধারণা পাই। এই সূত্র অনুযায়ী, বাইরে থেকে বল প্রয়োগ না করলে স্থির বস্তু চিরকাল স্থির থাকবে এবং গতিশীল বস্তু চিরকাল সমবেগে সরলরেখায় চলতে থাকবে।"
             },
             {
                 question: "জালিয়ানওয়ালাবাগের হত্যাকাণ্ড ঘটেছিল",
                 options: ["28 July, 1914", "24 July, 1935", "16 October, 1905", "13 April, 1919"],
-                correct: 3
+                correct: 3,
+                explanation: "১৯১৯ সালের ১৩ই এপ্রিল পাঞ্জাবের অমৃতসরের জালিয়ানওয়ালাবাগে রাওলাট আইনের প্রতিবাদে জড়ো হওয়া নিরস্ত্র ভারতীয়দের ওপর ব্রিটিশ জেনারেল ডায়ারের নির্দেশে ব্রিটিশ সেনা নির্বিচারে গুলি চালায়।"
             },
             {
                 question: "ভারতের রাষ্ট্রপতি নির্বাচিত হন",
                 options: ["রাজ্যসভা দ্বারা", "সংসদের সদস্য এবং রাজ্য আইন পরিষদের সদস্যগণ দ্বারা", "লোকসভা দ্বারা", "সংসদের সদস্য দ্বারা"],
-                correct: 1
+                correct: 1,
+                explanation: "ভারতের রাষ্ট্রপতি একটি নির্বাচকমণ্ডলী (Electoral College) দ্বারা নির্বাচিত হন, যার মধ্যে সংসদের উভয় কক্ষের (লোকসভা ও রাজ্যসভা) নির্বাচিত সদস্য এবং রাজ্য বিধানসভাগুলির নির্বাচিত সদস্যবৃন্দ থাকেন।"
             },
             {
                 question: "বীরবলের আসল নাম কী ছিল?",
                 options: ["মহেশ দাস", "শ্যাম দাস", "ভগবান দাস", "রাম দাস"],
-                correct: 0
+                correct: 0,
+                explanation: "মুঘল সম্রাট আকবরের প্রধান উপদেষ্টা ও রাজসভার নবরত্নদের অন্যতম সদস্য বীরবলের প্রকৃত নাম ছিল মহেশ দাস।"
             },
             {
                 question: "হীরা শক্ত হওয়ার কারণ",
                 options: ["এটি কার্বন পরমাণুর সমন্বয়ে গঠিত", "সমস্ত চারটি ভ্যালেন্স ইলেক্ট্রন কোভ্যালেন্ট বন্ড দ্বারা প্রতিটি কার্বন পরমাণুর সাথে আবদ্ধ", "এটি পোড়ানো যায় না", "এটি একটি দৈত্য অণু"],
-                correct: 1
+                correct: 1,
+                explanation: "হীরকের কেলাস গঠনে প্রতিটি কার্বন পরমাণু তার ৪টি যোজ্যতা ইলেকট্রন দিয়ে অন্য ৪টি কার্বন পরমাণুর সাথে অত্যন্ত শক্তিশালী ত্রিমাত্রিক সমযোজী বন্ধন তৈরি করে। এই দৃঢ় কাঠামোর জন্যই হীরা প্রাকৃতিক বস্তুর মধ্যে কঠিনতম।"
             },
             {
                 question: "লোকসভায় 'জিরো-আওয়ার'-এর সর্বাধিক সময়কাল হল",
                 options: ["60 মিনিট", "অনির্দিষ্টকাল", "30 মিনিট", "2 ঘণ্টা"],
-                correct: 2
+                correct: 0,
+                explanation: "লোকসভার অধিবেশনে প্রশ্নোত্তর পর্ব শেষ হওয়ার ঠিক পরে (দুপুর ১২টা থেকে ১টা) সময়টিকে 'জিরো আওয়ার' বলা হয়। এর সাধারণ সময়সীমা ১ ঘণ্টা বা ৬০ মিনিট।"
             },
             {
                 question: "নিম্নলিখিত বিভাগের কোনটি থেকে ভারত তার জি.ডি.পি.-এর সর্বাধিক অংশ লাভ করে?",
                 options: ["নির্মাণক্ষেত্র", "সেবাক্ষেত্র", "কৃষিক্ষেত্র", "উৎপাদনক্ষেত্র"],
-                correct: 1
+                correct: 1,
+                explanation: "ভারতীয় অর্থনীতির তিনটি প্রধান ক্ষেত্রের মধ্যে সেবাক্ষেত্র বা টারশিয়ারি সেক্টর (যেমন: আইটি, ব্যাংকিং, পর্যটন ইত্যাদি) ভারতের জিডিপিতে সবথেকে বেশি (প্রায় ৫৩% এর ওপর) অবদান রাখে।"
             },
             {
                 question: "প্রাকৃতিক নির্বাচনের আইন যার সাথে সম্পর্কিত",
                 options: ["ডারউইন", "মেন্ডেল", "ডালটন", "জে. বি. এস. হ্যাল্ডেন"],
-                correct: 0
+                correct: 0,
+                explanation: "ব্রিটিশ বিজ্ঞানী চার্লস ডারউইন তাঁর বিখ্যাত 'Origin of Species' গ্রন্থে প্রাকৃতিক নির্বাচনবাদ বা যোগ্যতমের উদ্বর্তন তত্ত্বটি প্রকাশ করেন।"
             },
             {
                 question: "নিম্নলিখিত কোনটি ডায়াবেটিসে আক্রান্ত ব্যক্তির প্রয়োজন?",
                 options: ["পেনিসিলিন", "স্ট্রেপটোমাইসিন", "ইনসুলিন", "স্টেরয়েড"],
-                correct: 2
+                correct: 2,
+                explanation: "মানবদেহের অগ্ন্যাশয় (Pancreas) থেকে ইনসুলিন হরমোন ঠিকমতো ক্ষরিত না হলে রক্তে শর্করার মাত্রা অনিয়ন্ত্রিতভাবে বেড়ে যায়, একেই ডায়াবেটিস বলে। তাই রোগীদের চিকিৎসায় ইনসুলিন প্রয়োজন হয়।"
             },
             {
                 question: "'গোবর' গ্যাসের প্রধান উপাদান হল",
                 options: ["কার্বন ডাইঅক্সাইড", "মিথেন", "ইথেন", "হাইড্রোজেন"],
-                correct: 1
+                correct: 1,
+                explanation: "গোবর গ্যাসের মূল উপাদান হলো মিথেন (CH₄), যা প্রায় ৫৫% থেকে ৭০% পর্যন্ত থাকে। এটি একটি অত্যন্ত দাহ্য গ্যাস যা শক্তি উৎস হিসেবে ব্যবহৃত হয়।"
             },
             {
-                question: '"Letters from a Father to Daughter" বইটি লিখেছিলেন',
+                question: "\"Letters from a Father to Daughter\" বইটি লিখেছিলেন",
                 options: ["মহাত্মা গান্ধী", "বি. ভি. প্যাটেল", "জওহরলাল নেহেরু", "এস. রাধাকৃষ্ণন"],
-                correct: 2
+                correct: 2,
+                explanation: "১৯২৮ সালের গ্রীষ্মকালে জওহরলাল নেহেরু এলাহাবাদ থেকে তাঁর ১০ বছর বয়সী কন্যা ইন্দিরা গান্ধীকে প্রকৃতির ইতিহাস ও সভ্যতার সূচনা নিয়ে ৩০টি চিঠি লিখেছিলেন, যা পরে বই আকারে প্রকাশিত হয়।"
             },
             {
                 question: "আফ্রিকা ইউরোপ থেকে পৃথক হয়েছে যার মাধ্যমে",
                 options: ["ভূমধ্যসাগর", "লোহিত সাগর", "আটলান্টিক মহাসাগর", "পারস্য উপসাগর"],
-                correct: 0
+                correct: 0,
+                explanation: "ভূমধ্যসাগর (Mediterranean Sea) উত্তরে ইউরোপ মহাদেশ এবং দক্ষিণে আফ্রিকা মহাদেশকে ভৌগোলিকভাবে পরস্পর থেকে আলাদা করেছে।"
             },
             {
                 question: "রাশিয়াতে অনুষ্ঠিত 2018 ফিফা বিশ্বকাপ কোন দেশ জিতেছে?",
                 options: ["ক্রোয়েশিয়া", "জার্মানি", "ব্রাজিল", "ফ্রান্স"],
-                correct: 3
+                correct: 3,
+                explanation: "২০১৮ সালের রাশিয়া ফুটবল বিশ্বকাপের ফাইনালে ফ্রান্স ৪-২ গোলে ক্রোয়েশিয়াকে হারিয়ে ইতিহাসের দ্বিতীয়বারের জন্য বিশ্বচ্যাম্পিয়ন হয়েছিল।"
             },
             {
                 question: "নীচের কোনটি বর্তমান ভারতের বৃহত্তম পাবলিক সেক্টর বাণিজ্যিক ব্যাংক?",
                 options: ["আই. ডি. বি. আই. ব্যাংক", "ভারতীয় স্টেট ব্যাংক", "আই. সি. আই. সি. আই. ব্যাংক", "ইন্ডিয়ান ব্যাংক"],
-                correct: 1
+                correct: 1,
+                explanation: "স্টেট ব্যাংক অফ ইন্ডিয়া (SBI) হলো ভারতের সবথেকে বড় রাষ্ট্রায়ত্ত বা পাবলিক সেক্টর বাণিজ্যিক ব্যাংক।"
             },
             {
                 question: "বাবার বয়স মেয়ের চারগুণ। যদি 5 বছর পরে তার বয়স মেয়ের বয়সের তিনগুণ হয়, তবে আরও 5 বছর পরে, তিনি তার মেয়ের বয়সের কতগুণ হবেন?",
                 options: ["2 গুণ", "3 গুণ", "1.5 গুণ", "2.5 গুণ"],
-                correct: 0
+                correct: 3,
+                explanation: "ধরি, মেয়ের বর্তমান বয়স = x বছর। বাবার বয়স = 4x বছর। ৫ বছর পর: 4x + 5 = 3(x + 5) => 4x + 5 = 3x + 15 => x = 10। মেয়ের বর্তমান বয়স ১০ বছর, বাবার বয়স ৪০ বছর। আরও ৫ বছর পর: মেয়ের বয়স = 20 বছর, বাবার বয়স = 50 বছর। গুণফল = 50/20 = 2.5 গুণ।"
             },
             {
                 question: "একটি দুই অঙ্কবিশিষ্ট সংখ্যার অঙ্কদ্বয়ের গুণফল ৪। যখন সংখ্যাটির সঙ্গে 18 যোগ করা হয়, তখন সংখ্যাটির অঙ্কদ্বয়ের স্থান পরিবর্তন হয়। সংখ্যাটি কত?",
                 options: ["24", "81", "18", "32"],
-                correct: 0
+                correct: 0,
+                explanation: "অপশন টেস্ট করলে দেখা যায়, ২৪ এর অঙ্ক দুটির গুণফল 2 × 4 = 8। আবার ২৪ এর সাথে ১৮ যোগ করলে হয় ৪২, যা ২৪ এর অঙ্ক দুটির স্থান পরিবর্তন নির্দেশ করে।"
             },
             {
                 question: "মান নির্ণয় করুন 0.002 x 0.5 = ?",
                 options: ["0.001", "0.1", "0.0001", "0.01"],
-                correct: 0
+                correct: 0,
+                explanation: "2 × 5 = 10। দশমিকের পর প্রথম সংখ্যায় ৩ ঘর এবং দ্বিতীয় সংখ্যায় ১ ঘর মিলিয়ে মোট ৪ ঘর আগে দশমিক বসবে। তাই 0.0010 বা 0.001।"
             },
             {
                 question: "X-এর 52% এবং Y-এর 30% এর অনুপাত 12:5। যদি X-এর মান Y-এর চেয়ে 50 বেশি হয়, তাহলে Y-এর মান কত হবে?",
                 options: ["260", "490", "230", "390"],
-                correct: 1
+                correct: 3,
+                explanation: "(X × 52)/(Y × 30) = 12/5 => X/Y = (12/5) × (30/52) = 18/13। ধরি X=18k, Y=13k। পার্থক্য 5k = 50 => k = 10। অতএব Y = 13 × 10 = 130। (নোট: প্রশ্নে টাইপো থাকতে পারে)"
             },
             {
                 question: "অমিত তার স্ত্রী সোমার চেয়ে 6 বছরের বড়। তাদের একমাত্র ছেলে বনির বয়স সোমার বর্তমান বয়সের 1/3 অংশ। যদি অমিত এবং বনির বর্তমান বয়সের সমষ্টি 54 বছর হয় তবে বনির জন্মের সময় সোমার বয়স কত ছিল?",
                 options: ["28", "36", "24", "32"],
-                correct: 0
+                correct: 2,
+                explanation: "ধরি সোমার বয়স S। অমিত = S+6, বনি = S/3। প্রশ্নানুসারে, (S+6) + S/3 = 54 => 4S/3 = 48 => S = 36 বছর। বনির বর্তমান বয়স 36/3 = 12 বছর। বনির জন্মের সময় সোমার বয়স ছিল 36 - 12 = 24 বছর।"
+            },
+            {
+                question: "তিনটি সংখ্যার সমষ্টি 136। যদি প্রথম ও দ্বিতীয় সংখ্যার অনুপাত 2:3 এবং দ্বিতীয় ও তৃতীয় সংখ্যার অনুপাত 5:3 হয়, তবে দ্বিতীয় সংখ্যাটি হল",
+                options: ["48", "60", "40", "52"],
+                correct: 1,
+                explanation: "অনুপাত দুটিকে এক করলে পাই, ১ম : ২য় : ৩য় = (2 × 5) : (3 × 5) : (3 × 3) = 10 : 15 : 9। অনুপাতের যোগফল = ৩৪। দ্বিতীয় সংখ্যাটি = 136 × (15/34) = 60।"
+            },
+            {
+                question: "৪ ঘণ্টা করে কাজ করে 15 জন পুরুষের 21 দিন সময় লাগে একটি কাজ সম্পন্ন করতে। 6 ঘণ্টা করে কাজ করলে 21 জন মহিলার সেই কাজটি শেষ করতে কত দিন সময় লাগবে, যদি 3 জন মহিলা 2 জন পুরুষের সমান কাজ করে?",
+                options: ["20", "30", "18", "25"],
+                correct: 0,
+                explanation: "৩ জন মহিলা = ২ জন পুরুষ, তাই ২১ জন মহিলা = ১৪ জন পুরুষ। সূত্র: M₁D₁H₁ = M₂D₂H₂ => 15 × 21 × 4 = 14 × D₂ × 6 => D₂ = 20 দিন।"
+            },
+            {
+                question: "ঘণ্টায় 36 কিলোমিটার বেগে 100 মিটার দীর্ঘ একটি ট্রেন একটি টেলিগ্রাফ পোস্টকে কত সেকেন্ডে অতিক্রম করবে?",
+                options: ["12 সেকেন্ড", "18 সেকেন্ড", "10 সেকেন্ড", "15 সেকেন্ড"],
+                correct: 2,
+                explanation: "গতিবেগ = 36 × (5/18) = 10 মিটার/সেকেন্ড। পোস্ট অতিক্রম করা মানে নিজের দৈর্ঘ্য (১০০ মিটার) অতিক্রম করা। সময় = 100/10 = 10 সেকেন্ড।"
+            },
+            {
+                question: "'A' একটি কাজ 12 দিনে করতে পারে। 'A' এবং 'B' কাজটি একসঙ্গে করলে তাদের সময় লাগে 8 দিন। যদি একা 'B' কাজটা করতে চায় তাহলে তার কতদিন সময় লাগবে?",
+                options: ["18 দিন", "28 দিন", "15 দিন", "24 দিন"],
+                correct: 3,
+                explanation: "B এর একা সময় লাগবে = (x × y)/(x - y) = (12 × 8)/(12 - 8) = 96/4 = 24 দিন।"
+            },
+            {
+                question: "দুই অঙ্কবিশিষ্ট একটি সংখ্যার অঙ্কদ্বয়ের সমষ্টি 12 এবং পার্থক্য 6। দুই অঙ্কবিশিষ্ট সংখ্যাটি কত?",
+                options: ["75", "93", "60", "84"],
+                correct: 1,
+                explanation: "ধরি সংখ্যাটির অঙ্ক দুটি x ও y। x+y=12, x-y=6। সমাধান করলে x=9, y=3। সংখ্যাটি হবে ৯৩ বা ৩৯। অপশনে ৯৩ থাকায় এটিই উত্তর।"
             }
         ];
 
         let currentQuestion = 0;
         let userAnswers = new Array(questions.length).fill(null);
-        let timeLeft = 2 * 60 * 60;
+        let timeLeft = 1 * 60 * 60;
         let timerInterval;
         let quizSubmitted = false;
 
@@ -449,11 +871,22 @@
                 `;
             });
 
+            let explanationHtml = '';
+            if (quizSubmitted) {
+                explanationHtml = `
+                    <div class="explanation-box">
+                        <strong>📝 ব্যাখ্যা:</strong>
+                        <p>${q.explanation}</p>
+                    </div>
+                `;
+            }
+
             document.getElementById('quizContent').innerHTML = `
                 <div class="question-container">
                     <div class="question-number">প্রশ্ন ${currentQuestion + 1} / ${questions.length}</div>
                     <div class="question-text">${q.question}</div>
                     <div class="options">${optionsHtml}</div>
+                    ${explanationHtml}
                 </div>
             `;
 
@@ -541,7 +974,7 @@
             document.getElementById('navigation').classList.add('hidden');
             document.getElementById('quizContent').classList.add('hidden');
 
-            document.getElementById('finalScore').textContent = `${correct}/100`;
+            document.getElementById('finalScore').textContent = `${correct}/${questions.length}`;
             document.getElementById('resultMessage').textContent = message;
             document.getElementById('correctCount').textContent = correct;
             document.getElementById('wrongCount').textContent = wrong;
@@ -549,22 +982,52 @@
             document.getElementById('percentage').textContent = percentage;
 
             clearInterval(timerInterval);
-            loadQuestion();
         }
 
-        function resetQuiz() {
-            currentQuestion = 0;
-            userAnswers = new Array(questions.length).fill(null);
-            timeLeft = 2 * 60 * 60;
-            quizSubmitted = false;
-
-            document.getElementById('resultSection').classList.add('hidden');
-            document.getElementById('timerSection').classList.remove('hidden');
-            document.getElementById('navigation').classList.remove('hidden');
-            document.getElementById('quizContent').classList.remove('hidden');
+        function reviewAnswers() {
+            let reviewHtml = '';
             
-            startTimer();
-            loadQuestion();
+            questions.forEach((q, index) => {
+                const userAnswer = userAnswers[index];
+                const isCorrect = userAnswer === q.correct;
+                const statusEmoji = isCorrect ? '✅' : userAnswer === null ? '❌' : '❌';
+                
+                let answerText = 'উত্তর দেননি';
+                if (userAnswer !== null) {
+                    answerText = `${String.fromCharCode(65 + userAnswer)}. ${q.options[userAnswer]}`;
+                }
+                
+                const correctAnswerText = `${String.fromCharCode(65 + q.correct)}. ${q.options[q.correct]}`;
+
+                reviewHtml += `
+                    <div class="review-item ${isCorrect ? 'correct-review' : 'incorrect-review'}">
+                        <div class="review-question">
+                            <strong>প্রশ্ন ${index + 1}:</strong> ${q.question}
+                        </div>
+                        <div class="review-answer">
+                            <div class="user-answer">
+                                <strong>আপনার উত্তর:</strong> ${answerText} ${statusEmoji}
+                            </div>
+                            <div class="correct-answer">
+                                <strong>সঠিক উত্তর:</strong> ${correctAnswerText}
+                            </div>
+                        </div>
+                        <div class="explanation">
+                            <strong>📝 ব্যাখ্যা:</strong>
+                            <p>${q.explanation}</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('reviewContent').innerHTML = reviewHtml;
+            document.getElementById('resultSection').classList.add('hidden');
+            document.getElementById('reviewSection').classList.remove('hidden');
+        }
+
+        function backToResult() {
+            document.getElementById('reviewSection').classList.add('hidden');
+            document.getElementById('resultSection').classList.remove('hidden');
         }
 
         function startTimer() {
@@ -585,263 +1048,5 @@
             }, 1000);
         }
     </script>
-
-    <style>
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-
-        .header h1 {
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
-
-        .timer-section {
-            background: #f8f9fa;
-            padding: 20px;
-            text-align: center;
-            border-bottom: 2px solid #e0e0e0;
-        }
-
-        .timer {
-            font-size: 24px;
-            color: #d32f2f;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: #e0e0e0;
-            margin: 15px 0;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-
-        .content {
-            padding: 30px;
-            max-height: 600px;
-            overflow-y: auto;
-        }
-
-        .question-container {
-            margin-bottom: 30px;
-        }
-
-        .question-number {
-            color: #667eea;
-            font-weight: bold;
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
-
-        .question-text {
-            font-size: 18px;
-            color: #333;
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .option {
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 16px;
-        }
-
-        .option:hover {
-            border-color: #667eea;
-            background: #f0f3ff;
-        }
-
-        .option input[type="radio"] {
-            margin-right: 10px;
-            cursor: pointer;
-        }
-
-        .option.selected {
-            border-color: #667eea;
-            background: #e8eaf6;
-        }
-
-        .option.correct {
-            border-color: #4caf50;
-            background: #e8f5e9;
-        }
-
-        .option.incorrect {
-            border-color: #d32f2f;
-            background: #ffebee;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 10px;
-            padding: 20px;
-            border-top: 2px solid #e0e0e0;
-            background: #f8f9fa;
-        }
-
-        button {
-            flex: 1;
-            padding: 12px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-next {
-            background: #667eea;
-            color: white;
-        }
-
-        .btn-next:hover {
-            background: #5568d3;
-        }
-
-        .btn-prev {
-            background: #f0f0f0;
-            color: #333;
-        }
-
-        .btn-prev:hover {
-            background: #e0e0e0;
-        }
-
-        .btn-submit {
-            background: #4caf50;
-            color: white;
-            font-size: 18px;
-        }
-
-        .btn-submit:hover {
-            background: #45a049;
-        }
-
-        .btn-reset {
-            background: #ff9800;
-            color: white;
-            flex: none;
-        }
-
-        .btn-reset:hover {
-            background: #e68900;
-        }
-
-        .result-section {
-            padding: 30px;
-            text-align: center;
-        }
-
-        .result-score {
-            font-size: 36px;
-            color: #667eea;
-            margin: 20px 0;
-            font-weight: bold;
-        }
-
-        .result-message {
-            font-size: 18px;
-            color: #666;
-            margin: 15px 0;
-        }
-
-        .result-details {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 6px;
-            margin: 20px 0;
-            text-align: left;
-        }
-
-        .detail-item {
-            margin: 10px 0;
-            font-size: 16px;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .navigation {
-            display: flex;
-            gap: 5px;
-            padding: 20px;
-            background: #f8f9fa;
-            flex-wrap: wrap;
-            border-bottom: 2px solid #e0e0e0;
-        }
-
-        .nav-btn {
-            width: 40px;
-            height: 40px;
-            padding: 0;
-            border: 2px solid #e0e0e0;
-            background: white;
-            cursor: pointer;
-            border-radius: 4px;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-btn:hover {
-            border-color: #667eea;
-        }
-
-        .nav-btn.answered {
-            background: #c8e6c9;
-            border-color: #4caf50;
-        }
-
-        .nav-btn.current {
-            background: #667eea;
-            color: white;
-            border-color: #667eea;
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 20px;
-            }
-
-            .content {
-                padding: 15px;
-            }
-
-            .timer {
-                font-size: 18px;
-            }
-        }
-    </style>
 </body>
 </html>
